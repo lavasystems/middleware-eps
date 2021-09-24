@@ -43,12 +43,6 @@ class Payment
 
             $checksum = $encrypt->getChecksum($checksum_data);
 
-            if(!$cheksum){
-                $this->response['status'] = 'failed';
-                $this->response['message'] = 'Checksum error. Please check required parameter.';
-                echo json_encode($this->response);
-            }
-
             $fpx_data = array(
                 'TRANS_ID' => $transaction_id,
                 'PAYMENT_MODE' => $payment_mode,
