@@ -43,6 +43,8 @@ class Payment
 
             $checksum = $encrypt->getChecksum($checksum_data);
 
+            die($checksum);
+
             $fpx_data = array(
                 'TRANS_ID' => $transaction_id,
                 'PAYMENT_MODE' => $payment_mode,
