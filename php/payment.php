@@ -43,16 +43,22 @@ class Payment
 
             $checksum = $encrypt->getChecksum($checksum_data);
 
+            if(!$cheksum){
+                $this->response['status'] = 'failed';
+                $this->response['message'] = 'Checksum error. Please check required parameter.';
+                echo json_encode($this->response);
+            }
+
             $fpx_data = array(
                 'TRANS_ID' => $transaction_id,
+                'PAYMENT_MODE' => $payment_mode,
                 'AMOUNT' => $amount,
+                'MERCHANT_CODE' => $merchant_code,
+                'EMAIL' => $data['email'],
                 'PAYEE_NAME' => $data['nama'],
                 'PAYEE_EMAIL' => $data['email'],
-                'EMAIL' => $data['email'],
-                'PAYMENT_MODE' => $payment_mode,
                 'BANK_CODE' => $data['bank_code'],
                 'BE_MESSAGE' => $data['be_message'],
-                'MERCHANT_CODE' => $merchant_code,
                 'CHECKSUM' => trim($checksum),
                 'nama' => $data['nama'],
                 'nric' => $data['nric'],
@@ -73,9 +79,9 @@ class Payment
         } else {
 
             $this->response['status'] = 'failed';
-            $this->response['message'] = 'Failed to process payment for this transaction';
+            $this->response['message'] = 'Failed to process payment for this transaction due to incomplete POST data';
 
-            return json_encode($this->response);
+            echo json_encode($this->response);
         }
     }
 
@@ -85,7 +91,7 @@ class Payment
 
         $this->response['status'] = 'success';
         $this->response['data'] = $input;
-        $this->response['message'] = 'Transaction has been completed';
+        $this->response['message'] = 'Transaction has been completed. Please check STATUS, STATUS_CODE and STATUS_MESSAGE for complete details.';
 
         echo json_encode($this->response);
     }
