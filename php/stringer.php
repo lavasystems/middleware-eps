@@ -22,7 +22,7 @@ class StringerController
 	        'TRANS_ID' => $data['TRANS_ID'],
 	        'PAYMENT_MODE' => $data['PAYMENT_MODE'],
 	        'AMOUNT' => $data['AMOUNT'],
-		'MERCHANT_CODE' => $data['MERCHANT_CODE']
+			'MERCHANT_CODE' => $data['MERCHANT_CODE']
 	    ];
 
 	    $header = null;
