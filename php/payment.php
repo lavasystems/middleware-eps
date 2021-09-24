@@ -87,6 +87,6 @@ class Payment
         $this->response['data'] = $input;
         $this->response['message'] = 'Transaction has been completed';
 
-        return json_encode($this->response);
+        echo json_encode($this->response);
     }
 }
