@@ -1,4 +1,5 @@
 <?php
+header("Access-Control-Allow-Origin: *");
 $config_filename = 'config.json';
 
 if (!file_exists($config_filename)) {

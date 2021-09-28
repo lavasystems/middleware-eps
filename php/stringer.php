@@ -1,4 +1,5 @@
 <?php
+header("Access-Control-Allow-Origin: *");
 define('ROOT_DIR', dirname(__DIR__, 1));
 
 class StringerController
