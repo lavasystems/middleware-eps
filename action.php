@@ -21,6 +21,19 @@ switch ($id) {
 		$payment = new Payment();
 
 		$data = $_POST;
+		$data['type'] = 'html';
+
+		return $payment->process($data);
+		
+	break;
+
+	case 'request':
+	
+		require_once('php/payment.php');
+		$payment = new Payment();
+
+		$data = $_POST;
+		$data['type'] = 'json';
 
 		return $payment->process($data);
 		
