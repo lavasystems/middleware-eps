@@ -60,15 +60,25 @@ class Payment
                 'catatan' => $data['catatan'],
             );
 
-            # pass to FPX controller
-            echo "<form id=\"myForm\" action=\"".$this->config['fpx']['url']."\" method=\"post\">";
-            foreach ($fpx_data as $a => $b) {
-                echo '<input type="hidden" name="'.htmlentities($a).'" value="'.filter_var($b, FILTER_SANITIZE_STRING).'">';
+            if($data['type'] == 'json')
+            {
+                $json['url'] = $this->config['fpx']['url'];
+                $json['method'] = 'post';
+                $json['data'] = $fpx_data;
+                echo json_encode($json,JSON_PRETTY_PRINT);
+
+            } else {
+
+                # pass to FPX controller
+                echo "<form id=\"myForm\" action=\"".$this->config['fpx']['url']."\" method=\"post\">";
+                foreach ($fpx_data as $a => $b) {
+                    echo '<input type="hidden" name="'.htmlentities($a).'" value="'.filter_var($b, FILTER_SANITIZE_STRING).'">';
+                }
+                echo "</form>";
+                echo "<script type=\"text/javascript\">
+                    document.getElementById('myForm').submit();
+                </script>";
             }
-            echo "</form>";
-            echo "<script type=\"text/javascript\">
-                document.getElementById('myForm').submit();
-            </script>";
 
         } else {
 
