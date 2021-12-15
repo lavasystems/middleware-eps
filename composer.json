@@ -1,0 +1,13 @@
+{
+  "name": "lavasystems/middleware-eps",
+  "description": "Middleware for connection from mobile app to EPIC",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+     {
+         "name": "Fadli Saad",
+         "email": "fadlisaad@gmail.com"
+     }
+  ],
+  "require": {}
+}
