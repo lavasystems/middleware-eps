@@ -28,7 +28,14 @@ class Merchant
 		if(file_exists($file) && $current_time - $expire_time < filemtime($file)) {
 			$merchant_list = json_decode(file_get_contents($file),true);
 		} else {
-
+			require ('conn.php');
+			$stm = $pdo->query("SELECT * FROM merchant");
+			$rows = $stm->fetchAll(PDO::FETCH_ASSOC);
+			$list = NULL;
+			
+			foreach ($rows as $key => $value) {
+				$merchant_list[$key] = $key.$value;
+			}
 			file_put_contents($file, json_encode($merchant_list));
 		}
 		
